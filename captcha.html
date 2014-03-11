@@ -1,0 +1,71 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+ <link href="style1.css" rel="stylesheet">
+<script>
+  var count = 0;
+$(document).ready(function(){
+
+$('#throw').click(
+
+    function(){
+        count++;
+        if(count==5){
+          alert("Your Last chance!!");
+        }
+        if(count==6){
+      alert("Time out!!!Try Again!!!");
+      window.location.reload();
+      
+    }
+        throwAnimatedDice();
+        
+         
+        //console.log( throwAnimatedDice() );
+     
+    }
+   
+);
+
+})
+function throwAnimatedDice(elem)
+{
+    var value = Math.round(Math.random() * 5) + 1;
+    console.log(value);
+    displayDice(15, value, $('#dice') );
+
+    return value;
+}
+
+function displayDice(times, final, element)
+{
+  
+ 
+    element.removeClass();
+    if (times > 1)
+    {
+        element.addClass('dice_' + (Math.round(Math.random() * 5) + 1));
+        setTimeout(function(){displayDice(times-1,final, element);},100);
+        
+    }
+    else
+        element.addClass('dice_' + final);
+
+
+}
+</script>
+</head>
+<body>
+  <br/>
+  <div class="main_luck">
+  <div class="luck">
+<p id="fivechance">Use your Five clicks!!!!</p>  <br/>
+  </div>
+  <div id="dice" class="dice_6"> </div>
+<br /><br />
+<button id="throw" class="button">Lucky Number</button>
+ <br/>
+  </div>
+  <br/>
+</body>
